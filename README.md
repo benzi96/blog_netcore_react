@@ -1,11 +1,3 @@
-# Sites
-
-## Identiy Server: https://blogidentityserversd2625.azurewebsites.net/
-
-## Api: https://blogapisd2625.azurewebsites.net/
-
-## MVC Frontend: https://blogmvcfrontendsd2625.azurewebsites.net/
-
 # Account
 
 UserName: alice
@@ -19,7 +11,7 @@ Password: Pass123$
 
 # Api
 
-- API for Blog Management (https://blogapisd2625.azurewebsites.net/swagger)
+- API for Blog Management 
 
 # MVC Frontend
 
