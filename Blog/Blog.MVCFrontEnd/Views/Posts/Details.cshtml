@@ -1,0 +1,35 @@
+﻿@model Blog.Domain.DTO.PostDto
+
+@{
+    ViewData["Title"] = "Detial Post Page";
+}
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <!-- the actual blog post: title/author/date/content -->
+        <h1><a href="">@Model.Title</a></h1>
+        <p class="lead">
+            <i class="fa fa-user"></i> by <a href="">Super User</a>
+        </p>
+        <hr>
+        <p><i class="fa fa-calendar"></i> Posted on @Model.CreatedDate</p>
+        <p>
+            <i class="fa fa-tags"></i> Tags:
+            @foreach (var tag in Model.Tags)
+            {
+                <a><span class="badge badge-info">@tag</span></a>
+            }
+        </p>
+
+        <hr>
+        @Html.Raw(Model.Content)
+    </div>
+</div>
+<!-- /.row -->
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

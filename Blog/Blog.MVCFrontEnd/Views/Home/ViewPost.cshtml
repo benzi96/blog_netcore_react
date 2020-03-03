@@ -1,0 +1,50 @@
+﻿@model Blog.Domain.DTO.PostDto
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <!-- the actual blog post: title/author/date/content -->
+        <h1>@Model.Title</h1>
+        <p class="lead">
+            <i class="fa fa-user"></i> by <a href="">@Model.AuthorName</a>
+        </p>
+        <hr>
+        <p><i class="fa fa-calendar"></i> Posted on @Model.CreatedDate</p>
+        <p>
+            <i class="fa fa-tags"></i> Tags:
+            @foreach (var tag in Model.Tags)
+            {
+                <a href="/tag/@Uri.EscapeDataString(tag)"><span class="badge badge-info">@tag</span></a>
+            }
+        </p>
+
+        <hr>
+        @Html.Raw(Model.Content)
+    </div>
+
+    <div class="col-md-4">
+
+        <!-- Search Widget -->
+        @*<div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>*@
+
+        @await Component.InvokeAsync("Category")
+
+    </div>
+
+</div>
+<!-- /.row -->

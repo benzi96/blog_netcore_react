@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Blog.Domain.DTO.PostSummaryDto>
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Category Page";
+    string apiUrl = Configuration["ApiUrl"];
+    var currentPage = ViewData["page"] as int?;
+    var newerPage = currentPage - 1;
+    var olderPage = currentPage + 1;
+}
+
+<div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+        <h1 class="my-4">
+            Category
+            <small>@ViewData["CategoryName"]</small>
+        </h1>
+        @foreach (var item in Model)
+        {
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <img class="card-img-top" src="@apiUrl/file/@item.FileUploadId" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">@item.Title</h2>
+                    <p class="card-text">@item.ShortDescription</p>
+                    <a asp-action="ViewPost" asp-route-id="@item.Id" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on @item.CreatedDate by
+                    <a href="#">@item.AuthorName</a>
+                </div>
+            </div>
+        }
+
+         @*Pagination 
+        <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-id="@olderPage">&larr; Older</a>
+            </li>
+            @if (currentPage == 0)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link">Newer &rarr;</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-id="@newerPage">Newer &rarr;</a>
+                </li>
+            }
+
+        </ul>*@
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+        <!-- Search Widget -->
+        @*<div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>*@
+
+        @await Component.InvokeAsync("Category")
+
+    </div>
+
+</div>
+<!-- /.row -->
